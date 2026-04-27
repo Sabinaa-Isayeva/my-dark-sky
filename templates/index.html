@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <main class="container py-4 py-lg-5">
+            <section class="hero-card">
+                <div class="row g-4 g-xl-5 align-items-stretch">
+                    <div class="col-xl-7">
+                        <div class="hero-copy-panel">
+                            <h1>Weather</h1>
+                            <p class="hero-copy">
+                                Search any city or use your live location to view current conditions,
+                                future forecasts, and past weather in one clean place.
+                            </p>
+                            <div class="hero-meta">
+                                <span>Today</span>
+                                <span>Past</span>
+                                <span>Future</span>
+                                <span>5 min cache</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-5">
+                        <form id="weather-form" class="weather-form control-card h-100">
+                            <div class="control-card-head">
+                                <h2 class="control-title">Check forecast</h2>
+                            </div>
+
+                            <div class="form-block">
+                                <label for="location-search" class="form-label">Search a location</label>
+                                <div class="search-row">
+                                    <input id="location-search" class="form-control form-control-lg" type="text" placeholder="Baku, London, Tokyo..." autocomplete="off">
+                                    <button class="btn btn-light btn-search" type="button" id="search-button">Search</button>
+                                </div>
+                                <div id="search-results" class="search-results mt-3"></div>
+                            </div>
+
+                            <div class="form-block">
+                                <label for="weather-date" class="form-label">Choose a date</label>
+                                <input id="weather-date" class="form-control form-control-lg" type="date" required>
+                            </div>
+
+                            <div class="quick-actions">
+                                <button class="btn btn-outline-light btn-lg" type="button" id="use-location-button">
+                                    Use current location
+                                </button>
+                                <button class="btn btn-ghost btn-lg" type="button" id="today-button">Jump to today</button>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg w-100 mt-4" type="submit">Show weather</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section id="status-card" class="status-card d-none mt-4"></section>
+
+            <section id="weather-panel" class="d-none mt-4">
+                <div class="row g-4">
+                    <div class="col-xl-5">
+                        <article class="info-card spotlight-card h-100">
+                            <p id="location-label" class="card-kicker"></p>
+                            <h2 id="date-label" class="mb-2"></h2>
+                            <div class="display-temp-wrap">
+                                <span id="headline-temp" class="headline-temp">--</span>
+                                <span class="headline-unit">°C</span>
+                            </div>
+                            <p id="headline-summary" class="headline-summary mb-4"></p>
+
+                            <div id="current-weather-grid" class="metric-grid"></div>
+                            <div id="daily-summary-grid" class="metric-grid mt-3"></div>
+                        </article>
+                    </div>
+
+                    <div class="col-xl-7">
+                        <article class="info-card h-100">
+                            <div class="section-heading">
+                                <div>
+                                    <h3 class="mb-0">Hourly forecast</h3>
+                                </div>
+                            </div>
+                            <div id="hourly-forecast" class="hourly-grid mt-4"></div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
